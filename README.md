@@ -1,38 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# cal-heatmap-react-starter
 
-## Getting Started
+This template should help get you started implementing and using Cal-Heatmap with React (using Next.js framework)
 
-First, run the development server:
+## Install
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+### By cloning the current repo
+
+Clone this git repo
+
+`git clone git@github.com:wa0x6e/cal-heatmap-react-starter.git`
+
+Inside the newly cloned repo, install all the dependencies
+
+`npm install`
+
+Start the app
+
+`npm run dev`
+
+You should see a very basic cal-heatmap calendar on the homepage
+
+### Using `npx create-next-app`
+
+Create a new project using `create-next-app`
+
+`npx create-next-app`
+
+Follow all the on-screen instructions, then add `cal-heatmap` with
+
+`npm install cal-heatmap`
+
+Create the file `src/components/cal-heatmap.tsx`, with the following content
+
+```
+import CalHeatmap from 'cal-heatmap';
+import Tooltip from 'cal-heatmap/plugins/Tooltip';
+import 'cal-heatmap/cal-heatmap.css';
+
+export default function Cal() {
+  if (process.browser) {
+    const cal = new CalHeatmap();
+    cal.paint({ theme: 'dark' }, [[Tooltip]]);
+  }
+
+  return <div id="cal-heatmap"></div>;
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In the page you want to display the calendar, import the component
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+import Cal from '../components/cal-heatmap'; // Adjust the path depending on your page
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Then display it with
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+<Cal />
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Start your app
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`npm run dev`
