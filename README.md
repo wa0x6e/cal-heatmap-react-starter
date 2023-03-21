@@ -62,3 +62,5 @@ Then display it with
 Start your app
 
 `npm run dev`
+
+If the calendar component is rendered twice, disable `reactStrictMode` in `next.config.js`.
